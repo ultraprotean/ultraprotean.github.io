@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalog — Portfolio Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f1eee3;
+    --paper-dim: #e8e3d3;
+    --ink: #16241d;
+    --ink-soft: #445044;
+    --line: #cdc6ab;
+    --ochre: #c1852e;
+    --teal: #3f6259;
+    --card: #f8f6ee;
+    --radius: 3px;
+    --max: 980px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(22,36,29,0.05) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  a{color:inherit;}
+
+  ::selection{background:var(--ochre); color:var(--paper);}
+
+  :focus-visible{
+    outline: 2px solid var(--ochre);
+    outline-offset: 3px;
+  }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* -------- NAV -------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,238,227,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.01em;
+    text-decoration:none;
+  }
+  .brand .catno{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--ochre);
+    border:1px solid var(--ochre);
+    padding:2px 6px;
+    border-radius:20px;
+    letter-spacing:0.04em;
+  }
+  nav.links{display:flex; gap:28px; font-size:0.9rem;}
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:3px;
+  }
+  nav.links a:hover{color:var(--ink);}
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--ochre);
+    transition:width 0.25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:var(--radius); padding:8px 10px; font-size:0.85rem; font-family:'IBM Plex Mono',monospace; cursor:pointer;}
+
+  /* -------- HERO -------- */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--teal);
+  }
+  h1.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.4rem, 5.2vw, 4.1rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+  }
+  h1.display em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--teal);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:var(--radius);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--ink);
+    transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn.primary{background:var(--ink); color:var(--paper);}
+  .btn.primary:hover{transform:translateY(-2px); background:var(--teal); border-color:var(--teal);}
+  .btn.ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn.ghost:hover{border-color:var(--ink); transform:translateY(-2px);}
+
+  /* Signature stamp element */
+  .stamp-wrap{
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .stamp{
+    width:min(230px, 80%);
+    aspect-ratio:1;
+    animation: spin 34s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .stamp-core{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    width:min(230px, 80%);
+    aspect-ratio:1;
+    margin:auto;
+  }
+  .stamp-core .num{
+    font-family:'Fraunces', serif;
+    font-size:2.6rem;
+    color:var(--ochre);
+    line-height:1;
+  }
+  .stamp-core .cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  /* -------- SECTION HEADERS -------- */
+  .section{padding:88px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:44px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:22px;
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(1.8rem, 3.4vw, 2.5rem);
+  }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--ink-soft);
+    max-width:40ch;
+  }
+
+  /* -------- FILTERS -------- */
+  .filters{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;
+  }
+  .filter-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    padding:7px 14px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .filter-btn:hover{border-color:var(--ink);}
+  .filter-btn.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+
+  /* -------- PROJECT GRID -------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    gap:22px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px 22px;
+    position:relative;
+    opacity:0;
+    transform:translateY(14px);
+    transition:transform 0.5s ease, opacity 0.5s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card.visible{opacity:1; transform:translateY(0);}
+  .card:hover{
+    border-color:var(--ochre);
+    box-shadow:0 10px 24px -14px rgba(22,36,29,0.35);
+  }
+  .card-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:16px;
+  }
+  .spec-id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    letter-spacing:0.05em;
+  }
+  .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    display:flex; align-items:center; gap:6px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    padding:3px 9px 3px 7px;
+    border-radius:20px;
+    border:1px solid var(--line);
+  }
+  .status .dot{width:6px; height:6px; border-radius:50%;}
+  .status[data-status="planned"] .dot{background:#9b8b5e;}
+  .status[data-status="active"] .dot{background:var(--ochre);}
+  .status[data-status="shipped"] .dot{background:var(--teal);}
+
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.32rem;
+    margin-bottom:10px;
+  }
+  .card p.desc{
+    color:var(--ink-soft);
+    font-size:0.93rem;
+    margin-bottom:18px;
+    min-height:44px;
+  }
+  .card .meta-row{
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px dashed var(--line);
+    padding-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .card .tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .card .tags span{
+    background:var(--paper-dim);
+    padding:2px 8px;
+    border-radius:20px;
+  }
+  .card .view{
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:500;
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .card .view svg{width:11px; height:11px; transition:transform 0.2s ease;}
+  .card:hover .view svg{transform:translateX(3px);}
+
+  /* ghost / add-new card */
+  .card.ghost{
+    background:transparent;
+    border:1.5px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    min-height:100%;
+    cursor:default;
+  }
+  .card.ghost:hover{border-color:var(--teal);}
+  .card.ghost .ghost-inner{color:var(--ink-soft);}
+  .card.ghost .plus{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    color:var(--teal);
+    display:block;
+    margin-bottom:6px;
+  }
+  .card.ghost p{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; max-width:22ch; margin:0 auto;}
+
+  /* -------- ABOUT -------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:56px;
+  }
+  .about-grid p{color:var(--ink-soft); margin-bottom:16px; max-width:58ch;}
+  .about-grid p:first-child{font-size:1.05rem; color:var(--ink);}
+  .legend{
+    border-left:2px solid var(--line);
+    padding-left:24px;
+  }
+  .legend dt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ochre);
+    margin-top:18px;
+  }
+  .legend dt:first-child{margin-top:0;}
+  .legend dd{font-size:0.9rem; color:var(--ink-soft); margin-top:4px;}
+
+  /* -------- FOOTER / CONTACT -------- */
+  footer.site{
+    background:var(--ink);
+    color:var(--paper);
+    padding:80px 0 40px;
+  }
+  footer.site .section-head{border-bottom-color:rgba(241,238,227,0.18);}
+  footer.site .section-head h2{color:var(--paper);}
+  footer.site .section-head .tag{color:rgba(241,238,227,0.6);}
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:30px;
+    margin-top:8px;
+  }
+  .contact-row a.mail{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    text-decoration:none;
+    color:var(--paper);
+    border-bottom:1px solid rgba(241,238,227,0.35);
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .contact-row a.mail:hover{border-color:var(--ochre); color:var(--ochre);}
+  .see-also{font-family:'IBM Plex Mono', monospace; font-size:0.8rem;}
+  .see-also .label{color:rgba(241,238,227,0.55); display:block; margin-bottom:8px;}
+  .see-also a{text-decoration:none; color:var(--paper); margin-right:16px; border-bottom:1px solid transparent;}
+  .see-also a:hover{border-color:var(--ochre); color:var(--ochre);}
+  .fine-print{
+    margin-top:64px;
+    padding-top:22px;
+    border-top:1px solid rgba(241,238,227,0.18);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:rgba(241,238,227,0.45);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* -------- RESPONSIVE -------- */
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stamp-wrap{order:-1; margin-bottom:12px;}
+    .stamp{width:150px;}
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); flex-direction:column; gap:0;
+      border-bottom:1px solid var(--line);
+      display:none;
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:14px 28px; border-top:1px solid var(--line);}
+    .menu-btn{display:block;}
+    .about-grid{grid-template-columns:1fr;}
+    .legend{border-left:none; border-top:2px solid var(--line); padding-left:0; padding-top:20px;}
+    .contact-row{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <a href="#top" class="brand">Jeff Walker<span class="catno">No. 001</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Catalog</a>
+      <a href="#contact">Correspondence</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Personal Working Catalog</p>
+        <h1 class="display">A running record<br>of things I'm <em>building</em>.</h1>
+        <p class="lede">This is my about me page. It contains my portfolio of projects (TBD -- currently just filler) and contact information. Every project gets logged here the moment it's planned, not just once it's finished.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#work">Browse the catalog</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="stamp-wrap">
+        <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="96" fill="none" stroke="#c1852e" stroke-width="1.2" stroke-dasharray="3 5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#16241d" stroke-width="1"/>
+          <path id="circlePath" d="M 100,100 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" fill="none"/>
+          <text font-family="IBM Plex Mono, monospace" font-size="8.6" letter-spacing="3" fill="#445044">
+            <textPath href="#circlePath" startOffset="0%">EST. 2026 · PORTFOLIO CATALOG · FIELD RECORD · </textPath>
+          </text>
+        </svg>
+        <div class="stamp-core">
+          <span class="num">01</span>
+          <span class="cap">Entries logged</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The catalog</h2>
+        <p class="tag">Filter by status — every project starts as "planned" long before it ships.</p>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All entries</button>
+        <button class="filter-btn" data-filter="planned">Planned</button>
+        <button class="filter-btn" data-filter="active">In progress</button>
+        <button class="filter-btn" data-filter="shipped">Shipped</button>
+      </div>
+
+      <div class="grid" id="grid">
+        <article class="card" data-status="shipped">
+          <div class="card-top">
+            <span class="spec-id">SPEC — 01</span>
+            <span class="status" data-status="shipped"><span class="dot"></span>Shipped</span>
+          </div>
+          <h3>Project name here</h3>
+          <p class="desc">One or two lines on what this project does and who it's for. Replace with your own summary.</p>
+          <div class="meta-row">
+            <div class="tags"><span>Tech</span><span>Tech</span></div>
+            <a class="view" href="#">View <svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card" data-status="active">
+          <div class="card-top">
+            <span class="spec-id">SPEC — 02</span>
+            <span class="status" data-status="active"><span class="dot"></span>In progress</span>
+          </div>
+          <h3>Project name here</h3>
+          <p class="desc">Describe what you're currently building and what stage it's at right now.</p>
+          <div class="meta-row">
+            <div class="tags"><span>Tech</span><span>Tech</span></div>
+            <a class="view" href="#">View <svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card" data-status="planned">
+          <div class="card-top">
+            <span class="spec-id">SPEC — 03</span>
+            <span class="status" data-status="planned"><span class="dot"></span>Planned</span>
+          </div>
+          <h3>Next idea, sketched out</h3>
+          <p class="desc">A short note on what you intend to build next and why it's worth doing.</p>
+          <div class="meta-row">
+            <div class="tags"><span>Tech</span><span>Tech</span></div>
+            <a class="view" href="#">Notes <svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          </div>
+        </article>
+
+        <div class="card ghost">
+          <div class="ghost-inner">
+            <span class="plus">+</span>
+            <p>Duplicate a card above to log your next project here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About the record-keeper</h2>
+        <p class="tag">A short bio — replace with your own background and focus.</p>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Write a couple of sentences about who you are, what you make, and the kind of problems you like working on. Keep it plain and specific — this is the part people actually read.</p>
+          <p>Add a second paragraph on your background, tools you favor, or what you're currently learning. Replace every line of this template with your own voice before publishing.</p>
+        </div>
+        <dl class="legend">
+          <dt>Planned</dt>
+          <dd>Scoped, not yet started.</dd>
+          <dt>Active</dt>
+          <dd>Currently being built.</dd>
+          <dt>Shipped</dt>
+          <dd>Live and in use.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Correspondence</h2>
+      <p class="tag">Open to hearing about new work — reach out any time.</p>
+    </div>
+    <div class="contact-row">
+      <a class="mail" href="mailto:hello@yourname.com">hello@yourname.com</a>
+      <div class="see-also">
+        <span class="label">See also</span>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Résumé</a>
+      </div>
+    </div>
+    <div class="fine-print">
+      <span>Portfolio catalog template</span>
+      <span>Entries current as of 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // filter buttons
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#grid .card:not(.ghost)');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.status === f) ? '' : 'none';
+      });
+    });
+  });
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.add('visible'); // fallback visible by default
+  });
+  // re-enable reveal animation only if motion is allowed
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.remove('visible');
+      observer.observe(card);
+    });
+  }
+</script>
+
+</body>
+</html>
