@@ -994,6 +994,51 @@ html[data-theme='moonlit'] .project .subtitle {
   font-weight: 700;
 }
 
+/* Track-record tiles inside the About window */
+
+.stats {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.stats li {
+  padding: 14px 16px;
+  border: var(--border-w) solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+html[data-theme='moonlit'] .stats strong {
+  color: var(--highlight);
+}
+
+.stats span {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 840px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Contact and footer */
 
 .contact {

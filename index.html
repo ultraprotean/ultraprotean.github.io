@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jeff Walker | Portfolio</title>
-    <meta name="description" content="Jeff Walker's portfolio: full-stack web projects, built from the written spec to the deployed app. Start with VibeMail, a cozy Gmail client with its own sync engine." />
-    <meta property="og:title" content="Jeff Walker | Portfolio" />
-    <meta property="og:description" content="Careful under the hood, cozy on top. Start with VibeMail, a Gmail client you can try right now." />
+    <title>Jeff Walker | Senior Software Engineer</title>
+    <meta name="description" content="Jeff Walker, senior software engineer with 18+ years in C#/.NET, APIs and backend systems. Portfolio, starting with VibeMail: a cozy Gmail client with its own sync engine." />
+    <meta property="og:title" content="Jeff Walker | Senior Software Engineer" />
+    <meta property="og:description" content="Careful under the hood, cozy on top. 18+ years of C#/.NET and backend systems. Start with VibeMail, a Gmail client you can try right now." />
     <meta property="og:type" content="website" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="fonts/pixelify-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -73,12 +73,12 @@
     <main id="main" class="wrap">
       <section class="hero window" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow">Portfolio</p>
+          <p class="eyebrow">Senior software engineer</p>
           <h1 id="hero-title">Careful under the hood, <em>cozy</em> on top.</h1>
           <p class="lede">
-            I'm Jeff Walker. I like building complete things, from the written spec to the deployed app, and I care about
-            the details people feel but rarely name: a calm error message, a form that behaves on a phone, an animation
-            that glides instead of jerking.
+            I'm Jeff Walker, a senior software engineer with 18+ years in C#, .NET and backend systems, from aerospace
+            flight software to financial services and travel revenue. I care about the details people feel but rarely
+            name: a calm error message, a form that behaves on a phone, an animation that glides instead of jerking.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">See my work</a>
@@ -110,7 +110,8 @@
                 VibeMail started as a question: how much of a real product could I take from a blank page to a live
                 URL? I took Gmail apart and rebuilt the parts I cared about. It signs you in with Google, copies your
                 mail into its own database, stays current the moment anything changes, and shows it all in a front end
-                that feels more like a village inn than an inbox.
+                that feels more like a village inn than an inbox. It is also a deliberate stretch into TypeScript, React
+                and Postgres, to show the same habits (contract first, tests as proof) carry across stacks.
               </p>
               <ul class="highlights">
                 <li><strong>Contract first.</strong> A written API contract (endpoints, error types, data model) came before the code, and the server, the tests and the interface all answer to it.</li>
@@ -192,23 +193,34 @@
         <div class="about window">
           <div>
             <p>
-              I like finishing things. For me that means writing down what a piece of software should do before
-              building it, proving it works with tests instead of hope, and shipping it somewhere real so other
-              people can use it.
+              Eighteen years in, I still like finishing things. For me that means writing down what a piece of
+              software should do before building it, proving it works with tests instead of hope, and shipping it
+              somewhere real so people can use it.
             </p>
             <p>
-              I'm drawn to the gap between "it works" and "it feels good": error messages that tell you what to do
-              next, interfaces that work with a keyboard or a screen reader, and animation that knows when to stay
+              Most of my career has been spent where software has to keep running: flight management systems,
+              financial services, and travel revenue platforms. I'm the person who owns the release process, traces a
+              production problem across code, logs and infrastructure to its real cause, and leaves the system
+              steadier than I found it.
+            </p>
+            <p>
+              I'm also drawn to the gap between "it works" and "it feels good": error messages that tell you what to
+              do next, interfaces that work with a keyboard or a screen reader, and animation that knows when to stay
               still.
             </p>
           </div>
           <dl class="sheet">
-            <div><dt>Focus</dt><dd>Full-stack web apps</dd></div>
-            <div><dt>Works in</dt><dd>TypeScript, JavaScript, SQL</dd></div>
-            <div><dt>Toolkit</dt><dd>React, Next.js, Node.js, Postgres, Vercel</dd></div>
-            <div><dt>Style</dt><dd>Contract first, tests as proof</dd></div>
-            <div><dt>Exploring</dt><dd>AI-assisted development with Claude Code</dd></div>
+            <div><dt>Role</dt><dd>Senior software engineer, 18+ years</dd></div>
+            <div><dt>Core</dt><dd>C# / .NET, APIs and backend systems</dd></div>
+            <div><dt>Also works in</dt><dd>SQL, JavaScript / TypeScript, React, Python</dd></div>
+            <div><dt>Strengths</dt><dd>Root-cause debugging, release ownership, CI/CD</dd></div>
+            <div><dt>Exploring</dt><dd>Applied machine learning, and AI-assisted development with Claude Code</dd></div>
           </dl>
+          <ul class="stats" aria-label="Track record">
+            <li><strong>Fewer than 10</strong><span>rollbacks across several hundred production deployments</span></li>
+            <li><strong>~90% faster</strong><span>after a major rework of a revenue-system process</span></li>
+            <li><strong>Git migration</strong><span>co-led from SVN, with the branching and release strategy that stabilized the codebase</span></li>
+          </ul>
         </div>
       </section>
 
