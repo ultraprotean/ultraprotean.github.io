@@ -194,6 +194,14 @@
 
   if (reducedQuery && reducedQuery.addEventListener) reducedQuery.addEventListener('change', applyLook);
 
+  // The email address is assembled here, not written in the page source, so simple scrapers do not harvest it.
+  var email = document.getElementById('email-link');
+  if (email) {
+    var address = email.getAttribute('data-user') + '@' + email.getAttribute('data-domain');
+    email.setAttribute('href', 'mailto:' + address);
+    email.textContent = address;
+  }
+
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 

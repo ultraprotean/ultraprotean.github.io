@@ -1055,6 +1055,12 @@ html[data-theme='moonlit'] .stats strong {
   color: var(--ink-soft);
 }
 
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 footer.site {
   margin: 36px auto 40px;
   padding: 0 16px calc(8px + env(safe-area-inset-bottom));
